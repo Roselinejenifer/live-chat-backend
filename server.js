@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const authRoutes = require('./routes/auth');
-const chatRoutes = require('./routes/chat'); // Make sure this path is correct
+const chatRoutes = require('./routes/chat');t
 const app = express();
 const http = require('http');
 const { Server } = require('socket.io');
@@ -20,7 +20,7 @@ mongoose.connect('mongodb+srv://Jas-13:123@jasper.cclnzjl.mongodb.net/livechat?r
   const server = http.createServer(app);
   const io = new Server(server, {
     cors: {
-      origin: '*', // Allow connections from any origin
+      origin: '*', 
     },
   });
   
@@ -31,14 +31,14 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use('/api/auth', authRoutes);
-app.use('/api/chat', chatRoutes); // Register chat routes
+app.use('/api/chat', chatRoutes); 
  app.get('/',(req,res)=>{res.status(200).send({message:"server connected"})})
 io.on('connection', (socket) => {
   console.log('a user connected');
 
   socket.on('message', (data) => {
     console.log('message:', data);
-    io.emit('message', data); // Broadcast the message to all clients
+    io.emit('message', data); 
   });
 
   socket.on('disconnect', () => {
