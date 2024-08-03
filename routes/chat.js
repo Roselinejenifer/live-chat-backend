@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const Message = require('../models/Message'); // Adjust path as needed
-const authenticate = require('../middleware/authMiddleware'); // Adjust path as needed
+const Message = require('../models/Message'); 
+const authenticate = require('../middleware/authMiddleware'); 
 
-// Get all messages - Protected route
+// Get all messages 
 router.get('/', authenticate, async (req, res) => {
   try {
     const messages = await Message.find().sort({ timestamp: 1 });
@@ -15,7 +15,7 @@ router.get('/', authenticate, async (req, res) => {
   }
 });
 
-// Send a new message - Protected route
+// Send a new message 
 router.post('/', authenticate, async (req, res) => {
   const { text } = req.body;
   const sender = req.user.username;
