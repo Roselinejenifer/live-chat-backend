@@ -24,7 +24,11 @@ mongoose.connect('mongodb+srv://Jas-13:123@jasper.cclnzjl.mongodb.net/livechat?r
     },
   });
   
-
+app.use(cors({
+  origin: '*', // Allow all origins, or specify the origin of your frontend
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Authorization', 'Content-Type']
+}));
 app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/chat', chatRoutes); // Register chat routes
